@@ -54,27 +54,10 @@ def main(argv):
         i_pdf = argv[0]
 
     if "PowerISA" in i_pdf.rsplit('/')[-1]:
-        i_isa_object = POWERISA.newobject(i_pdf)
+        i_isa_object = ppc64.PPC64(i_pdf)
     else:
-        print("Unrecognized ISA")
+        print("Unrecognized ISA: " + i_pdf.rsplit('/')[-1])
 
-    # creating a pdf file object
-    pdfFileObj = open(i_pdf, 'rb')
-    # creating a pdf reader object
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-
-    # printing number of pages in pdf file
-    print(pdfReader.numPages)
-
-    # creating a page object
-    pageObj = pdfReader.getPage(1440)
-
-    # extracting text from page
-    #print(pageObj.extractText())
-    x = pageObj.extractText()
-    #x = x.replace(' ', '')
-    x = x.strip()
-    x = x.split('\n')
 
 
 
